@@ -19,7 +19,6 @@ def add_css_class_widget(widget, css_class):
 
 @register.filter
 def as_material(field, col='s6'):
-
     try:
         widget = field.field.widget
     except:
@@ -50,13 +49,11 @@ def as_material(field, col='s6'):
     else:
         input_type = u'default'
 
-    return get_template("materialize/field.html").render(
-        Context({
-            'field': field,
-            'col': col,
-            'input_type': input_type,
-        })
-    )
+    return get_template("materialize/field.html").render({
+        'field': field,
+        'col': col,
+        'input_type': input_type,
+    })
 
 
 @register.filter
@@ -65,5 +62,3 @@ def html_attrs(attrs):
     for name, value in attrs.items():
         pairs.append(u'%s="%s"' % (escape(name), escape(value)))
     return mark_safe(u' '.join(pairs))
-
-
