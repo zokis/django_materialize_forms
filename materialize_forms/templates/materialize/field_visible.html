@@ -18,19 +18,30 @@
         {% include "materialize/field_errors.html" %}
     </div>
 {% elif input_type == "file" %}
-  <div class="file-field input-field col {{ col }}">
-      <div class="row">
-         <div class="col">
-             <label for="{{ field.auto_id }}">{{ field.label }}</label>
-         </div>
-         <div class="btn col push-s1">
-             <span>{{field.name}}</span>
-             {{ field }}
-             {% include "materialize/field_help.html" %}
-             {% include "materialize/field_errors.html" %}
-         </div>
-      </div>
-  </div>
+    <div class="file-field input-field col {{ col }}">
+        <div class="btn">
+            <span>File</span>
+              {{ field }}
+              {% include "materialize/field_help.html" %}
+              {% include "materialize/field_errors.html" %}
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="{{ field.label }}">
+        </div>
+    </div>
+  <!--<div class="file-field input-field col {{ col }}">-->
+
+      <!--<div class="row">-->
+         <!--<div class="col">-->
+             <!--<label for="{{ field.auto_id }}">{{ field.label }}</label>-->
+         <!--</div>-->
+         <!--<div class="btn col push-s1">-->
+             <!--<span>{{field.name}}</span>-->
+             <!--{{ field }}-->
+
+         <!--</div>-->
+      <!--</div>-->
+  <!--</div>-->
 {% else %}
 {# treat all other input_types as a text input field #}
     <div class="col {{ col }}" style="padding:10px">
