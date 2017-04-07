@@ -32,9 +32,12 @@ def as_material(field, col='s6'):
 
     if isinstance(field.field, DateField):
         add_css_class_widget(widget, 'datepicker')
-
-    if isinstance(widget, widgets.TextInput):
+    elif isinstance(widget, widgets.TextInput):
         input_type = u'text'
+    elif isinstance(widget, widgets.EmailInput):
+        input_type = u'email'
+    elif isinstance(widget, widgets.URLInput):
+        input_type = u'url'
     elif isinstance(widget, widgets.Textarea):
         input_type = u'textarea'
         add_css_class_widget(widget, 'materialize-textarea')
@@ -46,6 +49,8 @@ def as_material(field, col='s6'):
         input_type = u'radioset'
     elif isinstance(widget, widgets.Select):
         input_type = u'select'
+    elif isinstance(widget, widgets.ClearableFileInput):
+        input_type = u'file'
     else:
         input_type = u'default'
 
