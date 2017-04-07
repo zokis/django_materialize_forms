@@ -17,6 +17,13 @@
         {% include "materialize/field_help.html" %}
         {% include "materialize/field_errors.html" %}
     </div>
+{% elif input_type == "select" %}
+    <div class="input-field col {{ col }}">
+        {{ field }}
+        <label for="{{ field.auto_id }}">{{ field.label }}</label>
+        {% include "materialize/field_help.html" %}
+        {% include "materialize/field_errors.html" %}
+    </div>
 {% elif input_type == "file" %}
     <div class="col {{ col }}">
         <label for="{{ field.auto_id }}">{{ field.label }}</label>
