@@ -1,5 +1,5 @@
 {% if input_type == "checkbox" %}
-    <div style="padding:10px">
+    <div style="padding:10px" {% if col %}class="col {{ col }}"{% endif %}>
         {{ field }}
         <label for="{{ field.auto_id }}">{{ field.label }}</label>
         {% include "materialize/field_help.html" %}
