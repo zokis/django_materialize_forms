@@ -33,11 +33,22 @@ def as_material(field, col='s6'):
     if isinstance(field.field, DateField):
         add_css_class_widget(widget, 'datepicker')
 
-    if isinstance(widget, widgets.Textarea):
-        input_type = u'textarea'
-        add_css_class_widget(widget, 'materialize-textarea')
-    else:
+    if widget.input_type:
         input_type = widget.input_type
+    else:
+        if isinstance(widget, widgets.Textarea):
+            input_type = u'textarea'
+            add_css_class_widget(widget, 'materialize-textarea')
+        elif isinstance(widget, widgets.CheckboxInput):
+            input_type = u'checkbox'
+        elif isinstance(widget, widgets.CheckboxSelectMultiple):
+            input_type = u'multicheckbox'
+        elif isinstance(widget, widgets.RadioSelect):
+            input_type = u'radio'
+        elif isinstance(widget, widgets.Select):
+            input_type = u'select'
+        else:
+            input_type = u'default'
 
     return get_template("materialize/field.html").render({
         'field': field,
