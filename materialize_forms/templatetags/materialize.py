@@ -33,9 +33,9 @@ def as_material(field, col='s6'):
     if isinstance(field.field, DateField):
         add_css_class_widget(widget, 'datepicker')
 
-    if widget.input_type:
+    try:
         input_type = widget.input_type
-    else:
+    except AttributeError:
         if isinstance(widget, widgets.Textarea):
             input_type = u'textarea'
             add_css_class_widget(widget, 'materialize-textarea')
