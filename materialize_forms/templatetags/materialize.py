@@ -30,8 +30,6 @@ def as_material(field, col='s6'):
         clazz = {'class': 'validate'}
     widget.attrs.update(clazz)
 
-    if isinstance(field.field, DateField):
-        add_css_class_widget(widget, 'datepicker')
 
     try:
         input_type = widget.input_type
@@ -39,6 +37,9 @@ def as_material(field, col='s6'):
         if isinstance(widget, widgets.Textarea):
             input_type = u'textarea'
             add_css_class_widget(widget, 'materialize-textarea')
+        elif isinstance(field.field, DateField):
+            input_type = u'date'
+            add_css_class_widget(widget, 'datepicker')
         elif isinstance(widget, widgets.CheckboxInput):
             input_type = u'checkbox'
         elif isinstance(widget, widgets.CheckboxSelectMultiple):
