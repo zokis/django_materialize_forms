@@ -13,7 +13,12 @@
 {% elif input_type == "text" or input_type == "textarea" or input_type == "url" or input_type == "email" %}
     <div class="input-field col {{ col }}">
         {{ field }}
-        <label for="{{ field.auto_id }}">{{ field.label }}</label>
+        <label for="{{ field.auto_id }}">
+            {{ field.label }}
+            {% if field.required %}
+                <span style="color: red; margin-left: 3px;">*</span>
+            {% endif %}
+        </label>
         {% include "materialize/field_help.html" %}
         {% include "materialize/field_errors.html" %}
     </div>
