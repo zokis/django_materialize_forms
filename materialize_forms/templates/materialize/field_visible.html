@@ -39,7 +39,7 @@
             {% include "materialize/field_errors.html" %}
         </div>
     </div>
-{% elif input_type == "date" %}
+{% elif input_type == "date" or input_type == "time" %}
     <div class="col {{ col }}">
         <label for="{{ field.auto_id }}"
                data-error="{% if field.errors %}{{ field.errors.0.error }}{% endif %}">
