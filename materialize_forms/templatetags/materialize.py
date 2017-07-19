@@ -31,7 +31,8 @@ def as_material(field, col='s6'):
     widget.attrs.update(clazz)
 
     if field.field.required:
-        field.field.label += '<span style="color: red; margin-left: 3px;">*</span>'
+        if field.field.label:
+            field.field.label += '<span style="color: red; margin-left: 3px;">*</span>'
 
     if isinstance(field.field, CharField) and field.help_text:
         placeholder_attr = {'placeholder': field.help_text}
