@@ -1,6 +1,6 @@
 from django import template
 from django.forms import widgets
-from django.forms.fields import DateField
+from django.forms.fields import DateField, TimeField
 from django.template import Context
 from django.template.loader import get_template
 from django.utils.html import escape
