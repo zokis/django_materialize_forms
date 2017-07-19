@@ -33,7 +33,7 @@ def as_material(field, col='s6'):
     if isinstance(field.field, DateField):
         input_type = u'date'
         add_css_class_widget(widget, 'datepicker')
-        widget_type = {'test': 'data'}
+        widget_type = {'input_type': 'date'}
         widget.attrs.update(widget_type)
     else:
         try:
