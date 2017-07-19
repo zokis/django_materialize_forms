@@ -1,6 +1,6 @@
 from django import template
 from django.forms import widgets
-from django.forms.fields import DateField, TimeField
+from django.forms.fields import DateField, TimeField, CharField
 from django.template import Context
 from django.template.loader import get_template
 from django.utils.html import escape
@@ -29,6 +29,10 @@ def as_material(field, col='s6'):
     except KeyError:
         clazz = {'class': 'validate'}
     widget.attrs.update(clazz)
+
+    if isinstance(field.field, CharField) and field.help_text:
+        placeholder_attr = {'placeholder': field.help_text}
+        widget.attrs.update(placeholder_attr)
 
     if isinstance(field.field, DateField):
         input_type = u'date'
