@@ -12,7 +12,6 @@
     {% include "materialize/field_help.html" with display="block" %}
 {% elif input_type == "text" or input_type == "textarea" or input_type == "url" or input_type == "email" %}
     <div class="input-field col {{ col }}">
-        text field
         {{ field }}
         <label for="{{ field.auto_id }}"
                data-error="{% if field.errors %}{{ field.errors.0.error }}{% endif %}">
