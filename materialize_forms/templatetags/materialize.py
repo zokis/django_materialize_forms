@@ -1,6 +1,6 @@
 from django import template
 from django.forms import widgets
-from django.forms.fields import DateField
+from django.forms.fields import DateField, TimeField, CharField
 from django.template import Context
 from django.template.loader import get_template
 from django.utils.html import escape
@@ -30,25 +30,35 @@ def as_material(field, col='s6'):
         clazz = {'class': 'validate'}
     widget.attrs.update(clazz)
 
-    if isinstance(field.field, DateField):
-        add_css_class_widget(widget, 'datepicker')
+    if isinstance(field.field, CharField) and field.help_text:
+        placeholder_attr = {'placeholder': field.help_text}
+        widget.attrs.update(placeholder_attr)
 
-    try:
-        input_type = widget.input_type
-    except AttributeError:
-        if isinstance(widget, widgets.Textarea):
-            input_type = u'textarea'
-            add_css_class_widget(widget, 'materialize-textarea')
-        elif isinstance(widget, widgets.CheckboxInput):
-            input_type = u'checkbox'
-        elif isinstance(widget, widgets.CheckboxSelectMultiple):
-            input_type = u'multicheckbox'
-        elif isinstance(widget, widgets.RadioSelect):
-            input_type = u'radio'
-        elif isinstance(widget, widgets.Select):
-            input_type = u'select'
-        else:
-            input_type = u'default'
+    if isinstance(field.field, DateField):
+        input_type = u'date'
+        add_css_class_widget(widget, 'datepicker')
+        widget.input_type = 'date'
+    elif isinstance(field.field, TimeField):
+        input_type = u'time'
+        add_css_class_widget(widget, 'timepicker')
+        widget.input_type = 'time'
+    else:
+        try:
+            input_type = widget.input_type
+        except AttributeError:
+            if isinstance(widget, widgets.Textarea):
+                input_type = u'textarea'
+                add_css_class_widget(widget, 'materialize-textarea')
+            elif isinstance(widget, widgets.CheckboxInput):
+                input_type = u'checkbox'
+            elif isinstance(widget, widgets.CheckboxSelectMultiple):
+                input_type = u'multicheckbox'
+            elif isinstance(widget, widgets.RadioSelect):
+                input_type = u'radio'
+            elif isinstance(widget, widgets.Select):
+                input_type = u'select'
+            else:
+                input_type = u'default'
 
     return get_template("materialize/field.html").render({
         'field': field,
