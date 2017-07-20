@@ -20,7 +20,7 @@
     <div class="input-field col {{ col }}">
         {{ field }}
         <label for="{{ field.auto_id }}"
-               data-error="{% if field.errors %}{{ field.errors.0.error }}{% endif %}">
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
             {{ field.label }}
             {% if field.field.required %}
                 <span style="color: red;">*</span>
@@ -31,7 +31,7 @@
     <div class="input-field col {{ col }}">
         {{ field }}
         <label for="{{ field.auto_id }}"
-               data-error="{% if field.errors %}{{ field.errors.0.error }}{% endif %}">
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
             {{ field.label }}
 
             {% if field.field.required %}
@@ -63,7 +63,7 @@
 {% elif input_type == "date" or input_type == "time" %}
     <div class="col {{ col }}">
         <label for="{{ field.auto_id }}"
-               data-error="{% if field.errors %}{{ field.errors.0.error }}{% endif %}">
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
             {{ field.label }}
             {% if field.field.required %}
                 <span style="color: red;">*</span>
