@@ -30,6 +30,14 @@ def as_material(field, col='s6'):
         clazz = {'class': 'validate'}
     widget.attrs.update(clazz)
 
+    # Because the above has already run, we can be sure the
+    # widget.attrs['class'] key is already present
+    if field.errors:
+        # There are django field errors, so add the invalid class to
+        # mark the field invalid in materialize
+        clazz = {'class': widget.attrs['class'] + ' invalid'}
+    widget.attrs.update(clazz)
+
     if isinstance(field.field, CharField) and field.help_text:
         placeholder_attr = {'placeholder': field.help_text}
         widget.attrs.update(placeholder_attr)

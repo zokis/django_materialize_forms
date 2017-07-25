@@ -20,7 +20,7 @@
     <div class="input-field col {{ col }}">
         {{ field }}
         <label for="{{ field.auto_id }}"
-               data-error="{% if field.errors %}{{ field.errors.0.error }}{% endif %}">
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
             {{ field.label }}
             {% if field.field.required %}
                 <span style="color: red;">*</span>
@@ -30,18 +30,19 @@
 {% elif input_type == "select" %}
     <div class="input-field col {{ col }}">
         {{ field }}
-        <label for="{{ field.auto_id }}"
-               data-error="{% if field.errors %}{{ field.errors.0.error }}{% endif %}">
+        <label for="{{ field.auto_id }}">
             {{ field.label }}
 
             {% if field.field.required %}
                 <span style="color: red;">*</span>
             {% endif %}
         </label>
+        {% include "materialize/field_errors.html" %}
     </div>
 {% elif input_type == "file" %}
     <div class="col {{ col }}">
-        <label for="{{ field.auto_id }}">
+        <label for="{{ field.auto_id }}" 
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
             {{ field.label }}
 
             {% if field.field.required %}
@@ -61,9 +62,9 @@
         </div>
     </div>
 {% elif input_type == "date" or input_type == "time" %}
-    <div class="col {{ col }}">
+    <div class="col {{ col }}" style="position: relative;">
         <label for="{{ field.auto_id }}"
-               data-error="{% if field.errors %}{{ field.errors.0.error }}{% endif %}">
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
             {{ field.label }}
             {% if field.field.required %}
                 <span style="color: red;">*</span>
@@ -74,7 +75,8 @@
 {% else %}
     {# treat all other input_types as a text input field #}
     <div class="col {{ col }}" style="padding:10px">
-        <label for="{{ field.auto_id }}" style="margin-bottom:10px;">
+        <label for="{{ field.auto_id }}" style="margin-bottom:10px;"
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
             {{ field.label }}
 
             {% if field.field.required %}
