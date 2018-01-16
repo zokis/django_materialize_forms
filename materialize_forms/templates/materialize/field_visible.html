@@ -30,14 +30,15 @@
 {% elif input_type == "select" %}
     <div class="input-field col {{ col }}">
         {{ field }}
-        <label for="{{ field.auto_id }}">
+        <label for="{{ field.auto_id }}"
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
             {{ field.label }}
 
             {% if field.field.required %}
                 <span style="color: red;">*</span>
             {% endif %}
         </label>
-        {% include "materialize/field_errors.html" %}
+        {% include "materialize/field_help.html" %}
     </div>
 {% elif input_type == "file" %}
     <div class="col {{ col }}">
