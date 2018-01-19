@@ -73,6 +73,17 @@
         </label>
         {{ field }}
     </div>
+{% elif input_type == "tel" %}
+    <div class="col {{ col }}" style="position: relative;">
+        <label for="{{ field.auto_id }}"
+               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
+            {{ field.label }}
+            {% if field.field.required %}
+                <span style="color: red;">*</span>
+            {% endif %}
+        </label>
+        {{ field }}
+    </div>
 {% else %}
     {# treat all other input_types as a text input field #}
     <div class="col {{ col }}" style="padding:10px">
