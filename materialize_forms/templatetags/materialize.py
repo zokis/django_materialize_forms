@@ -6,6 +6,8 @@ from django.template.loader import get_template
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 
+from phonenumber_field.formfields import PhoneNumberField
+
 register = template.Library()
 
 
@@ -37,11 +39,16 @@ def as_material(field, col='s6'):
         # mark the field invalid in materialize
         clazz = {'class': widget.attrs['class'] + ' invalid'}
     widget.attrs.update(clazz)
+    if isinstance(field.field, PhoneNumberField):
+        widget.input_type = u'tel'
+        if field.help_text:
+            placeholder_attr = {'placeholder': field.help_text}
+            widget.attrs.update(placeholder_attr)
 
     if isinstance(field.field, CharField) and field.help_text:
         placeholder_attr = {'placeholder': field.help_text}
         widget.attrs.update(placeholder_attr)
-
+    
     if isinstance(field.field, DateField):
         input_type = u'date'
         add_css_class_widget(widget, 'datepicker')
