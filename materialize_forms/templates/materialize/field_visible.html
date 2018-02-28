@@ -58,8 +58,8 @@
 
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text" placeholder="{{ field.help_text }}">
+                {% include "materialize/field_errors.html" %}
             </div>
-            {% include "materialize/field_errors.html" %}
         </div>
     </div>
 {% elif input_type == "date" or input_type == "time" %}
