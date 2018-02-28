@@ -19,13 +19,15 @@
 {% elif input_type == "text" or input_type == "textarea" or input_type == "url" or input_type == "email" %}
     <div class="input-field col {{ col }}">
         {{ field }}
-        <label for="{{ field.auto_id }}"
-               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
+        <label for="{{ field.auto_id }}">
             {{ field.label }}
             {% if field.field.required %}
                 <span style="color: red;">*</span>
             {% endif %}
         </label>
+        {% if field.errors %}
+            <span class="helper-text" data-error="{{ field.errors.0 }}"></span>
+        {% endif %}
     </div>
 {% elif input_type == "select" %}
     <div class="input-field col {{ col }}">
@@ -75,14 +77,16 @@
     </div>
 {% elif input_type == "tel" %}
     <div class="input-field col {{ col }}" style="position: relative;">
-        <label for="{{ field.auto_id }}"
-               data-error="{% if field.errors %}{{ field.errors.0 }}{% endif %}">
+        <label for="{{ field.auto_id }}">
             {{ field.label }}
             {% if field.field.required %}
                 <span style="color: red;">*</span>
             {% endif %}
         </label>
         {{ field }}
+        {% if field.errors %}
+            <span class="helper-text" data-error="{{ field.errors.0 }}"></span>
+        {% endif %}
     </div>
 {% else %}
     {# treat all other input_types as a text input field #}
