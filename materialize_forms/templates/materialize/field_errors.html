@@ -1,5 +1,3 @@
 {% if field.errors %}
-    {% for error in field.errors %}
-        <span class="help-inline error">{{ error }}</span>
-    {% endfor %}
+    <span class="helper-text" data-error="{{ field.errors.0 }}"></span>
 {% endif %}
