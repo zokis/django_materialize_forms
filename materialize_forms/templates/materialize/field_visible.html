@@ -1,8 +1,9 @@
 {% if input_type == "checkbox" %}
     <div style="padding:10px" {% if col %}class="col {{ col }}"{% endif %}>
-        {{ field }}
-        <label for="{{ field.auto_id }}">
-            {{ field.label }}
+        <label>
+            {{ field }}
+            
+            <span>{{ field.label }}</span>
 
             {% if field.field.required %}
                 <span style="color: red;">*</span>
